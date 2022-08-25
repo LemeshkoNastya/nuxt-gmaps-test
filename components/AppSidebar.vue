@@ -1,7 +1,9 @@
 <template>
   <aside class="sidebar">
     <div class="sidebar__header">
-      <img :src="require(`~/assets/icons/logo.svg`)" alt="icon logo" />
+      <a href="https://landing.mealhub.group/">
+        <img :src="require(`~/assets/icons/logo.svg`)" alt="icon logo"
+      /></a>
     </div>
     <div ref="cards" class="cards"><CardList ref="cardsList" /></div>
   </aside>

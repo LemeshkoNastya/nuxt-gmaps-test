@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 .radius-settings {
   display: flex;
+  align-items: center;
 
   &__value {
     display: flex;

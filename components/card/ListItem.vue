@@ -102,7 +102,6 @@ export default {
     border-radius: $radius;
     width: 328px;
     height: 110px;
-    overflow: auto;
     cursor: pointer;
 
     &_active {
@@ -122,6 +121,8 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 10px;
+    height: 100%;
+    overflow: auto;
   }
 
   &__title {
