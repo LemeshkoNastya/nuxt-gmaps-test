@@ -32,14 +32,6 @@ export default {
       this.indexActiveCard = index;
       this.updateActiveCard(restaurant);
     },
-    // isScroll() {
-    //   console.log("scroll");
-
-    //   //   let bottomOfWindow =
-    //   //     document.documentElement.scrollTop + window.innerHeight ===
-    //   //     document.documentElement.offsetHeight;
-    //   //   console.log(bottomOfWindow);
-    // },
   },
 };
 </script>
@@ -49,13 +41,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  //   height: auto;
-  //   overflow: scroll;
-
-  //   overflow: scroll;
-
-  //   &::-webkit-scrollbar {
-  //     width: 0;
-  //   }
 }
 </style>
