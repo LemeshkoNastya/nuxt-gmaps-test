@@ -4,7 +4,9 @@
       :icon="'/icons/minus.svg'"
       @click.native.prevent="changeRadius(false)"
     />
-    <div class="radius-settings__value">Радиус: {{ radius }}</div>
+    <div class="radius-settings__value">
+      Радиус: {{ radius | radiusFormat }}
+    </div>
     <MapButton
       :icon="'/icons/plus.svg'"
       @click.native.prevent="changeRadius(true)"
@@ -14,8 +16,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { radiusFormat } from "~/assets/js/helpers.js";
 
 export default {
+  filters: {
+    radiusFormat,
+  },
   computed: {
     ...mapGetters({
       radius: "getRadius",

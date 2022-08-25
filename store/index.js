@@ -123,13 +123,13 @@ export const actions = {
       .then((data) => {
         if (data.items) {
           const coordsGeolocation = new google.maps.LatLng(
-            state.geolocation.lat,
-            state.geolocation.lng
+            state.location.lat,
+            state.location.lng
           );
 
           data.items.forEach((item) => {
             if (!item.hasOwnProperty("distance")) {
-              const coords = new google.maps.LatLng(
+              const coordsLocation = new google.maps.LatLng(
                 item.latitude,
                 item.longitude
               );
@@ -137,7 +137,7 @@ export const actions = {
               const distance =
                 google.maps.geometry.spherical.computeDistanceBetween(
                   coordsGeolocation,
-                  coords
+                  coordsLocation
                 );
 
               item.distance = Math.floor(distance);

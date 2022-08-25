@@ -28,7 +28,9 @@
         <span class="cards__time cards__text">
           {{ opened }}
         </span>
-        <span class="cards__distance cards__text">{{ distance }}</span>
+        <span class="cards__distance cards__text">
+          {{ distance | distanceFormat }}
+        </span>
       </div>
     </div>
   </div>
@@ -41,8 +43,13 @@
 </template>
 
 <script>
+import { distanceFormat } from "~/assets/js/helpers.js";
+
 export default {
   props: ["info"],
+  filters: {
+    distanceFormat,
+  },
   computed: {
     image() {
       return this.info.image;
