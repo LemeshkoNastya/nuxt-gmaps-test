@@ -86,7 +86,10 @@ export const getters = {
   },
   getSmallWindow(state) {
     return state.smallWindow;
-  }
+  },
+  getCountRestaurants(state) {
+    return state.restaurants.length;
+  },
 }
 
 export const actions = {

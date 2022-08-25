@@ -26,6 +26,7 @@ export default {
     ...mapGetters({
       page: "getPage",
       smallWindow: "getSmallWindow",
+      count: "getCountRestaurants",
     }),
   },
   methods: {
@@ -33,14 +34,28 @@ export default {
     ...mapActions(["getListRestaurants"]),
     isScroll() {
       const cardsList = document.querySelector(".cards__list");
-      const height = cardsList.offsetHeight;
-      const scrollTop = this.$refs.cards.scrollTop;
-      const screenHeight = window.innerHeight;
 
-      const bottomOfWindow = scrollTop + screenHeight >= height;
+      if (this.smallWindow) {
+        const card = document.querySelector(".cards__item");
 
-      if (bottomOfWindow !== this.positionBottom)
-        this.positionBottom = bottomOfWindow;
+        const scrollLeft = this.$refs.cards.scrollLeft;
+        const cardsWidth = this.count * (card.offsetWidth + 9);
+        const width = cardsList.offsetWidth;
+
+        const bottomOfWindow = scrollLeft + width >= cardsWidth;
+
+        if (bottomOfWindow !== this.positionBottom)
+          this.positionBottom = bottomOfWindow;
+      } else {
+        const height = cardsList.offsetHeight;
+        const scrollTop = this.$refs.cards.scrollTop;
+        const screenHeight = window.innerHeight;
+
+        const bottomOfWindow = scrollTop + screenHeight >= height;
+
+        if (bottomOfWindow !== this.positionBottom)
+          this.positionBottom = bottomOfWindow;
+      }
     },
   },
   mounted() {
