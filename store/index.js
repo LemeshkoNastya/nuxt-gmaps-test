@@ -22,6 +22,7 @@ export const state = () => ({
     fillOpacity: 0,
   },
   stepRadius: [0.5, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50],
+  activeCard: null,
 })
 
 export const mutations = {
@@ -38,6 +39,9 @@ export const mutations = {
   updateRadius(state, radius) {
     state.radius = radius;
     state.radiusOptions.radius = radius * 1000;
+  },
+  updateActiveCard(state, card) {
+    state.activeCard = card;
   },
 }
 
@@ -56,6 +60,14 @@ export const getters = {
   },
   getRadius(state) {
     return state.radius;
+  },
+  getLocationActiveCard(state) {
+    if (state.activeCard)
+      return {
+        lat: state.activeCard.latitude,
+        lng: state.activeCard.longitude
+      }
+    return state.activeCard
   },
 }
 
@@ -98,6 +110,7 @@ export const actions = {
         return response.json();
       })
       .then((data) => {
+        console.log(data)
         if (data.items) commit("updateRestaurants", data.items);
         else commit("updateRestaurants", []);
       })

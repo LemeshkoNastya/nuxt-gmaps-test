@@ -18,9 +18,9 @@ export default {
   width: 30px;
   height: 30px;
   background: #ffffff;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px $color-shadow;
   border: none;
-  border-radius: 10px;
+  border-radius: $radius;
   cursor: pointer;
 }
 </style>

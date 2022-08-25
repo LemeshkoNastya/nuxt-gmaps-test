@@ -38,8 +38,8 @@ export default {
     margin: 0 5px;
     padding: 7px 9px;
     background: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    box-shadow: 0px 4px 8px $color-shadow;
+    border-radius: $radius;
   }
 }
 </style>

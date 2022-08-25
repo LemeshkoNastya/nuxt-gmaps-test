@@ -3,7 +3,7 @@
     <div class="map__settings">
       <MapButton
         :icon="'/icons/geoposition.svg'"
-        @click.native.prevent="updateLocation(geolocation)"
+        @click.native.prevent="clickGeolocation"
       />
       <MapRadiusSettings />
     </div>
@@ -96,6 +96,10 @@ export default {
         }
       }, 0);
     },
+    activeCard(value) {
+      this.changeMapCenter(value);
+      this.$refs.GMap.map.setZoom(15);
+    },
   },
   computed: {
     ...mapGetters({
@@ -103,6 +107,7 @@ export default {
       location: "getLocation",
       restaurants: "getRestaurants",
       circleOptions: "getRadiusOptions",
+      activeCard: "getLocationActiveCard",
     }),
   },
   methods: {
@@ -122,6 +127,11 @@ export default {
           this.updateLocation(e.latLng.toJSON());
         }
       );
+    },
+    clickGeolocation() {
+      this.updateLocation(this.geolocation);
+      this.changeMapCenter(this.geolocation);
+      this.changeMapZoom();
     },
     changeMapCenter(position) {
       const mapCenter = new google.maps.LatLng(position.lat, position.lng);
@@ -163,7 +173,8 @@ export default {
 <style lang="scss">
 .map {
   position: relative;
-  width: 100%;
+  margin-left: $width-sidebar;
+  width: calc(100% - #{$width-sidebar});
   height: 100%;
 
   &__settings {

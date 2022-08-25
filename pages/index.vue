@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <AppSidebar />
     <MapFrame />
   </div>
 </template>
