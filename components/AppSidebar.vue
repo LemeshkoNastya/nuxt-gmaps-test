@@ -3,12 +3,51 @@
     <div class="sidebar__header">
       <img :src="require(`~/assets/icons/logo.svg`)" alt="icon logo" />
     </div>
-    <div class="cards"><CardList /></div>
+    <div ref="cards" class="cards"><CardList ref="cardsList" /></div>
   </aside>
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapMutations, mapActions } from "vuex";
+
+export default {
+  data() {
+    return {
+      positionBottom: false,
+    };
+  },
+  watch: {
+    positionBottom(value) {
+      if (value) this.updatePage();
+    },
+    page() {
+      this.getListRestaurants(true);
+    },
+  },
+  computed: {
+    ...mapGetters({
+      page: "getPage",
+    }),
+  },
+  methods: {
+    ...mapMutations(["updatePage"]),
+    ...mapActions(["getListRestaurants"]),
+    isScroll() {
+      const cardsList = document.querySelector(".cards__list");
+      const height = cardsList.offsetHeight;
+      const scrollTop = this.$refs.cards.scrollTop;
+      const screenHeight = window.innerHeight;
+
+      const bottomOfWindow = scrollTop + screenHeight >= height;
+
+      if (bottomOfWindow !== this.positionBottom)
+        this.positionBottom = bottomOfWindow;
+    },
+  },
+  mounted() {
+    this.$refs.cards.addEventListener("scroll", this.isScroll);
+  },
+};
 </script>
 
 <style lang="scss">

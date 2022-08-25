@@ -10,6 +10,7 @@ export const state = () => ({
   },
   limit: 15,
   page: 1,
+  totalRestaurants: 0,
   radius: 1,
   radiusOptions: {
     radius: 1000,
@@ -43,6 +44,13 @@ export const mutations = {
   updateActiveCard(state, card) {
     state.activeCard = card;
   },
+  updatePage(state) {
+    if (state.restaurants.length < state.totalRestaurants)
+      state.page++;
+  },
+  updateTotalRestaurants(state, value) {
+    state.totalRestaurants = value;
+  },
 }
 
 export const getters = {
@@ -68,6 +76,9 @@ export const getters = {
         lng: state.activeCard.longitude
       }
     return state.activeCard
+  },
+  getPage(state) {
+    return state.page;
   },
 }
 
@@ -96,7 +107,7 @@ export const actions = {
   async getListRestaurants({
     commit,
     state
-  }) {
+  }, pagination) {
     const urlApi = "https://dev.api.mealhub.group/api/ru/search";
     const params = `?limit=${state.limit}&page=${state.page}&latitude=${state.location.lat}&longitude=${state.location.lng}&radius=${state.radius}`;
 
@@ -110,7 +121,6 @@ export const actions = {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
         if (data.items) {
           const coordsGeolocation = new google.maps.LatLng(
             state.geolocation.lat,
@@ -134,7 +144,15 @@ export const actions = {
             }
           });
 
-          commit("updateRestaurants", data.items);
+          if (state.totalRestaurants !== data.total_count) commit("updateTotalRestaurants", data.total_count);
+
+          if (pagination) {
+            const restaurants = JSON.parse(JSON.stringify(state.restaurants));
+            const newData = JSON.parse(JSON.stringify(data.items));
+            const newRestaurants = restaurants.concat(newData);
+
+            commit("updateRestaurants", newRestaurants);
+          } else commit("updateRestaurants", data.items);
         } else commit("updateRestaurants", []);
       })
       .catch((e) => {
