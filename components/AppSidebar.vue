@@ -1,10 +1,6 @@
 <template>
   <aside class="sidebar">
-    <div class="sidebar__header">
-      <a href="https://landing.mealhub.group/">
-        <img :src="require(`~/assets/icons/logo.svg`)" alt="icon logo"
-      /></a>
-    </div>
+    <AppHeader v-if="!smallWindow" />
     <div ref="cards" class="cards"><CardList ref="cardsList" /></div>
   </aside>
 </template>
@@ -29,6 +25,7 @@ export default {
   computed: {
     ...mapGetters({
       page: "getPage",
+      smallWindow: "getSmallWindow",
     }),
   },
   methods: {
@@ -62,13 +59,12 @@ export default {
   background: #f2f2f2;
   box-shadow: 5px 0px 5px $color-shadow;
 
-  &__header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 44px;
-    background: #ffffff;
-    box-shadow: 0px 4px 8px $color-shadow;
+  @include for-size(tablet) {
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background: none;
+    box-shadow: none;
   }
 
   .cards {
@@ -79,6 +75,11 @@ export default {
 
     &::-webkit-scrollbar {
       width: 0;
+    }
+
+    @include for-size(tablet) {
+      height: auto;
+      background: none;
     }
   }
 }

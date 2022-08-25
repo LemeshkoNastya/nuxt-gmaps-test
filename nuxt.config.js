@@ -33,7 +33,7 @@ export default {
   css: [],
 
   styleResources: {
-    scss: ['~/assets/style/variables.scss']
+    scss: ['~/assets/style/variables.scss', '~/assets/style/mixins.scss']
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

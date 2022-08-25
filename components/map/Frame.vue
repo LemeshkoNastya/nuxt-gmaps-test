@@ -177,6 +177,13 @@ export default {
   width: calc(100% - #{$width-sidebar});
   height: 100%;
 
+  @include for-size(tablet) {
+    margin-left: 0;
+    margin-top: $height-header;
+    width: 100%;
+    height: calc(100% - #{$height-header});
+  }
+
   &__settings {
     position: absolute;
     top: 10px;

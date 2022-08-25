@@ -47,6 +47,8 @@ export default {
     background: #ffffff;
     box-shadow: 0px 4px 8px $color-shadow;
     border-radius: $radius;
+    font-size: 13px;
+    line-height: 16px;
   }
 }
 </style>

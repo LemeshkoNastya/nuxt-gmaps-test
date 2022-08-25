@@ -24,6 +24,7 @@ export const state = () => ({
   },
   stepRadius: [0.5, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50],
   activeCard: null,
+  smallWindow: false,
 })
 
 export const mutations = {
@@ -50,6 +51,9 @@ export const mutations = {
   },
   updateTotalRestaurants(state, value) {
     state.totalRestaurants = value;
+  },
+  updateSmallWindow(state, value) {
+    state.smallWindow = value;
   },
 }
 
@@ -80,6 +84,9 @@ export const getters = {
   getPage(state) {
     return state.page;
   },
+  getSmallWindow(state) {
+    return state.smallWindow;
+  }
 }
 
 export const actions = {

@@ -101,11 +101,16 @@ export default {
     box-shadow: 0px 5px 10px $color-shadow;
     border-radius: $radius;
     width: 328px;
+    min-width: 328px;
     height: 110px;
     cursor: pointer;
 
     &_active {
       box-shadow: 0px 5px 10px $color-shadow-active;
+    }
+
+    @include for-size(tablet) {
+      margin: 10px 0 10px 10px;
     }
   }
 
@@ -120,6 +125,7 @@ export default {
   &__info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: 10px;
     height: 100%;
     overflow: auto;

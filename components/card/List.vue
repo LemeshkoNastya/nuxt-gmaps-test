@@ -1,5 +1,5 @@
 <template>
-  <div class="cards__list">
+  <div class="cards__list" :class="{ cards__warm: restaurants.length === 0 }">
     <CardListItem
       v-for="(restaurant, index) in restaurants"
       :key="restaurant.id"
@@ -37,9 +37,21 @@ export default {
 </script>
 
 <style lang="scss">
-.cards__list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.cards {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include for-size(tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__warm {
+    @include for-size(tablet) {
+      justify-content: center;
+    }
+  }
 }
 </style>
