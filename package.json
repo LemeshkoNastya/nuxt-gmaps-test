@@ -19,6 +19,7 @@
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",
     "node-sass": "^7.0.1",
+    "nuxt-gmaps": "^1.2.10",
     "sass-loader": "^10.3.1"
   }
 }

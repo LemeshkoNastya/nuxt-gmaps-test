@@ -32,6 +32,10 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
+  styleResources: {
+    scss: ['~/assets/style/variables.scss']
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
@@ -44,6 +48,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/style-resources',
+    ['nuxt-gmaps', {
+      key: 'AIzaSyDMIrtbJF6Srff7QaTzglbkqKdWlp_qiq4',
+      //you can use libraries: ['places']
+    }],
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
