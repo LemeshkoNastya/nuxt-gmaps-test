@@ -43,11 +43,6 @@
 <script>
 export default {
   props: ["info"],
-  data() {
-    return {
-      distance: "500м",
-    };
-  },
   computed: {
     image() {
       return this.info.image;
@@ -81,6 +76,9 @@ export default {
     },
     opened() {
       return this.info.opened ? "Открыто" : "Закрыто";
+    },
+    distance() {
+      return this.info.distance;
     },
   },
 };

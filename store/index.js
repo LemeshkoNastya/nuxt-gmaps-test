@@ -111,8 +111,31 @@ export const actions = {
       })
       .then((data) => {
         console.log(data)
-        if (data.items) commit("updateRestaurants", data.items);
-        else commit("updateRestaurants", []);
+        if (data.items) {
+          const coordsGeolocation = new google.maps.LatLng(
+            state.geolocation.lat,
+            state.geolocation.lng
+          );
+
+          data.items.forEach((item) => {
+            if (!item.hasOwnProperty("distance")) {
+              const coords = new google.maps.LatLng(
+                item.latitude,
+                item.longitude
+              );
+
+              const distance =
+                google.maps.geometry.spherical.computeDistanceBetween(
+                  coordsGeolocation,
+                  coords
+                );
+
+              item.distance = Math.floor(distance);
+            }
+          });
+
+          commit("updateRestaurants", data.items);
+        } else commit("updateRestaurants", []);
       })
       .catch((e) => {
         console.log("Ошибка:", e);
