@@ -54,8 +54,8 @@ export default {
     return {
       currentLocation: {},
       pins: {
-        geolocation: { icon: { url: "/icons/user-position.svg" } },
-        restaurants: { icon: { url: "/icons/rest-point.svg" } },
+        geolocation: { icon: { url: "icons/user-position.svg" } },
+        restaurants: { icon: { url: "icons/rest-point.svg" } },
       },
       mapStyle: mapStyleFile,
       clusterStyle: [

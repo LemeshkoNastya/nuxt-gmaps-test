@@ -10,7 +10,7 @@ export default {
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, height=device-height, initial-scale=1, user-scalable=0, maximum-scale=1'
       },
       {
         hid: 'description',
@@ -55,5 +55,9 @@ export default {
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  router: {
+    base: '/nuxt-gmaps-test/'
+  },
 }
