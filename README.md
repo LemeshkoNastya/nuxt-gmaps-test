@@ -1,5 +1,7 @@
 # nuxt-gmaps-test
 
+## [Demo](https://lemeshkonastya.github.io/nuxt-gmaps-test/)
+
 ## Build Setup
 
 ```bash
